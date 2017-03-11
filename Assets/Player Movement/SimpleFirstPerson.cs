@@ -2,12 +2,17 @@
 
 public class SimpleFirstPerson : MonoBehaviour {
 
-    [Tooltip("Ns")]
+    [Tooltip("The impulse applied when jumping. /Ns")]
     public float jumpImpulse = 200F;
+    [Tooltip("Minimum time between jumps. /s")]
+    public float jumpTimeout = 0.2F;
+    [Tooltip("Verbose debug output.")]
     public bool debug = false;
 
     Vector3 jumpImpulseVector;
     Rigidbody rb;
+
+    float lastJumpTime = -1F;
 
     void Awake()
     {
@@ -29,8 +34,12 @@ public class SimpleFirstPerson : MonoBehaviour {
 
         if (jumpKeyDown)
         {
-            rb.AddForce(jumpImpulseVector, ForceMode.Impulse);
-            if (debug) Debug.Log("applied impulse with vector: " + jumpImpulseVector);
+            if (Physics.Raycast(transform.position, Vector3.down, 0.2F) && Time.time - lastJumpTime >= jumpTimeout)
+            {
+                lastJumpTime = Time.time;
+                rb.AddForce(jumpImpulseVector, ForceMode.Impulse);
+                if (debug) Debug.Log("applied impulse with vector: " + jumpImpulseVector);
+            }
         }
     }
 }
