@@ -389,7 +389,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.5661765, g: 0.7845843, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.5514706, g: 0.9257608, b: 1, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -486,5 +486,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpImpulse: 200
   jumpTimeout: 0.2
-  jumpKey: 32
   debug: 0
