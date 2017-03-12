@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class SimpleFirstPerson : MonoBehaviour {
-
-    [Tooltip("The impulse applied when jumping. /Ns")]
+public class SimpleFirstPerson : MonoBehaviour
+{
+    [Tooltip("The impulse appliedon the Y axis when jumping. /Ns")]
     public float jumpImpulse = 200F;
     [Tooltip("Minimum time between jumps. /s")]
     public float jumpTimeout = 0.2F;
@@ -30,11 +31,10 @@ public class SimpleFirstPerson : MonoBehaviour {
     {
         if (!enabled) return;
 
-        bool jumpKeyDown = Input.GetKeyDown("space");
-
-        if (jumpKeyDown)
+        if (Input.GetButtonDown("Jump"))
         {
-            if (Physics.Raycast(transform.position, Vector3.down, 0.2F) && Time.time - lastJumpTime >= jumpTimeout)
+            if (Physics.Raycast(transform.position, Vector3.down, 0.2F) 
+                && (Time.time - lastJumpTime >= jumpTimeout || lastJumpTime < 0F))
             {
                 lastJumpTime = Time.time;
                 rb.AddForce(jumpImpulseVector, ForceMode.Impulse);
