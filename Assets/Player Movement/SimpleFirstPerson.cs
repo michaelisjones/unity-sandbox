@@ -16,7 +16,6 @@ public class SimpleFirstPerson : MonoBehaviour
     [Tooltip("Verbose debug output.")]
     public int debug = 0;
 
-    Vector3 jumpImpulseVector;
     Rigidbody rb;
 
     float lastJumpTime = -1F;
@@ -24,7 +23,6 @@ public class SimpleFirstPerson : MonoBehaviour
 
     void Awake()
     {
-        jumpImpulseVector = new Vector3(0F, jumpImpulse, 0F);
         rb = GetComponent<Rigidbody>();
 
         if (!rb)
@@ -55,6 +53,7 @@ public class SimpleFirstPerson : MonoBehaviour
                 && (Time.time - lastJumpTime >= jumpTimeout || lastJumpTime < 0F))
             {
                 lastJumpTime = Time.time;
+                Vector3 jumpImpulseVector = new Vector3(0F, jumpImpulse, 0F);
                 rb.AddForce(jumpImpulseVector, ForceMode.Impulse);
                 if (debug > 0) Debug.Log("applied impulse with vector: " + jumpImpulseVector);
             }
