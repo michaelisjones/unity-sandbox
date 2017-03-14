@@ -472,7 +472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57134d403e4574d76a86eba199a8cf7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementForce: 2000
+  movementForce: 1000
   jumpImpulse: 150
   jumpTimeout: 0.2
   floorDetectDistance: 0.1
